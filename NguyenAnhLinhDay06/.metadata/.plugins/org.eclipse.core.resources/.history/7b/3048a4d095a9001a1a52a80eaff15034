@@ -1,0 +1,11 @@
+package Bai02;
+
+public class CongNhan extends NhanSu {
+ 
+	XuongSX xuongSx;
+	private String congViec;
+	private int soNgayCong;
+	private double luong;
+	
+	
+}

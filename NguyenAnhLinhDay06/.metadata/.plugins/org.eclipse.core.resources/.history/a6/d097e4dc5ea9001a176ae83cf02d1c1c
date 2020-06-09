@@ -1,0 +1,87 @@
+package Bai01;
+
+import java.util.Scanner;
+
+public class Employee {
+    public static Scanner in = new Scanner(System.in);
+	Date dateOfBirth;
+	private int code;
+	private String surname;
+	private String name;
+	private int yearWorking;
+	public Date getDateOfBirth() {
+		return dateOfBirth;
+	}
+	public void setDateOfBirth(Date dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
+	}
+	public int getCode() {
+		return code;
+	}
+	public void setCode(int code) {
+		this.code = code;
+	}
+	public String getSurname() {
+		return surname;
+	}
+	public Employee() {
+		super();
+	}
+	public Employee(Date dateOfBirth, int code, String surname, String name, int yearWorking) {
+		super();
+		this.dateOfBirth = dateOfBirth;
+		this.code = code;
+		this.surname = surname;
+		this.name = name;
+		this.yearWorking = yearWorking;
+	}
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getYearWorking() {
+		return yearWorking;
+	}
+	public void setYearWorking(int yearWorking) {
+		this.yearWorking = yearWorking;
+	}
+	public void input()
+	{
+		dateOfBirth = new Date();
+		System.out.println("---------Nhập Thông Tin of Employee--------");
+		System.out.printf("\tNhập mã nhân viên:");
+		code = in.nextInt();
+		in.nextLine();
+		System.out.printf("\tNhập surName:");
+		surname = in.nextLine();
+		System.out.printf("\tNhập name:");
+		name = in.nextLine();
+		System.out.printf("\tNhập yearWorking:");
+		yearWorking = in.nextInt();
+		System.out.println("--------Nhập Date-----------");
+		System.out.printf("\tNhập day:");
+		dateOfBirth.setDay(in.nextInt());
+		System.out.printf("\tNhập month:");
+		dateOfBirth.setMonth(in.nextInt());
+		System.out.printf("\tNhập year:");
+		dateOfBirth.setYear(in.nextInt());
+		
+	}
+	public void output()
+	{
+		System.out.printf("%10d",code);
+		System.out.printf("%10s",surname);
+		System.out.printf("%10s",name);
+		System.out.printf("%17d",yearWorking);
+		System.out.printf("%20s",dateOfBirth.getDay()+"/"+dateOfBirth.getMonth()+"/"+dateOfBirth.getYear());
+	}
+	
+
+	
+	
+}

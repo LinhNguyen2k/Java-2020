@@ -1,0 +1,141 @@
+package Bai01;
+
+import java.util.Scanner;
+
+public class RunMain {
+	public static Scanner in = new Scanner(System.in);
+	private static Teacher x;
+	public static int n;
+
+	public static void main(String[] args) {
+		int k = 0;
+		System.out.printf("\tNhập số teacher:");
+		n = in.nextInt();
+		Teacher x = new Teacher();
+		Teacher[] tc = new Teacher[n + 1];
+		Teacher b = new Teacher();
+
+		for (int i = 0; i < n; i++) {
+			System.out.println("----Nhập Thông Tin Teacher thứ " + (i + 1) + ":");
+			tc[i] = new Teacher();
+			tc[i].input();
+		}
+		System.out.println();
+		System.out.println("\t-------------MENU-------------");
+		System.out.println("\t\t1.Danh Sách Teacher");
+		System.out.println("\t\t2.Danh Sách Teacher có lương < 5000000");
+		System.out.println("\t\t3.Chuyển Các Teacher Không Có Giờ Dạy Xuống Cuối");
+		System.out.println("\t\t4.Tính Tổng lương của tất cả Teacher");
+		System.out.println("\t\t5.Thêm một Teacher mới vào vị trí k");
+		System.out.println("\t\t6.Sắp Xếp Theo Chiều Tăng Dần Của Name");
+		System.out.println("\t\t0.Thoát");
+		int chon;
+		do {
+			System.out.printf("\tMời bạn chọn 1 trong các chức năng trên:");
+			chon = in.nextInt();
+			System.out.println();
+			switch (chon) {
+			case 1: {
+				System.out.println("\t\t\t--------Danh Sách Teacher-------");
+				title();
+				for (int i = 0; i < n; i++) {
+					System.out.printf("%5d", (i + 1));
+					tc[i].output();
+				}
+				break;
+			}
+			case 2: {
+				System.out.println("\t\t\t---------Danh Sách Teacher có lương < 5000000---------");
+				title();
+				boolean check = false;
+				for (int i = 0; i < n; i++) {
+					if (tc[i].calcuSalary() < 5000000) {
+						tc[i].output();
+						check = true;
+					}
+				}
+				if (check != true) {
+					System.out.println("\t\t\t-----Không Có Teacher nào có salary < 5000000-------");
+				}
+				break;
+			}
+
+			case 5: {
+				b.Chen(tc, n, x, k);
+				break;
+			}
+
+			case 4:
+
+				double S = 0;
+				for (int i = 0; i < n; i++) {
+					S += tc[i].calcuSalary();
+				}
+				System.out.printf("\t\tTổng Salary của các Teacher =%f", S);
+				System.out.println();
+				break;
+
+			case 3:
+			System.out.println("\t\t\t-------Danh Sách Chuyển Các Teacher Không Có Giờ Dạy Xuống Cuối--------");
+				title();
+				for (int i = 0; i < n-1; i++) {
+					for(int j=i+1 ; j<n;j++)
+					{
+						if (tc[i].getNumberOfTeachingHours() == 0) {
+							
+							Teacher temp = tc[i];
+							tc[i] = tc[j];
+							tc[j] = temp;						}
+					}
+					
+				}
+				for (int i = 0; i < n; i++) {
+					System.out.printf("%5d", (i + 1));
+					tc[i].output();
+				}
+				break;
+
+			case 6:
+
+				System.out.println("\t\t\t-----------SORT THEO TÊN------------");
+				title();
+				for (int i = 0; i < n - 1; i++) {
+					for (int j = i + 1; j < n; j++) {
+						if (tc[i].getName().compareTo(tc[j].getName()) > 0) {
+							Teacher temp = tc[i];
+							tc[i] = tc[j];
+							tc[j] = temp;
+						}
+					}
+				}
+				for (int i = 0; i < n; i++) {
+					System.out.printf("%4s", i + 1);
+					tc[i].output();
+				}
+				break;
+			default: {
+				System.out.println("Yêu Cầu Bạn Chọn Lại");
+			}
+			}
+
+		} while (true);
+
+	}
+
+	public static void title() {
+		System.out.printf("%5s", "STT");
+		System.out.printf("%10s", "Mã NV");
+		System.out.printf("%10s", "Surname");
+		System.out.printf("%10s", "Name");
+		System.out.printf("%17s", "YearWorking");
+		System.out.printf("%20s", "Day/Month/Year");
+		System.out.printf("%15s", "Mã Subject");
+		System.out.printf("%15s", "Name Subject");
+		System.out.printf("%19s", "Hệ số Lương");
+		System.out.printf("%15s", "Lương");
+		System.out.printf("%22s", "Số Giờ Dạy");
+		System.out.println();
+
+	}
+
+}
